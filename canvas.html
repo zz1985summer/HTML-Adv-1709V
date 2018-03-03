@@ -10,20 +10,36 @@
     function init() {
         var element = document.getElementById('canvas');
         var canvas = element.getContext('2d');
+
+        canvas.globalAlpha = 0.5;
         canvas.fillStyle = '#f00';
         canvas.fillRect(0, 0, 150, 100);
+        canvas.strokeStyle = '#00f';
         canvas.strokeRect(150, 100, 150, 100);
         canvas.clearRect(100, 50, 100, 100);
 
-        canvas.fillText('Hello, Canvas!', 120, 105);
+        canvas.fillText('Hello, 画布!', 120, 105);
 
         canvas.moveTo(150, 50); // 起始点
         canvas.lineTo(150, 150);
+        canvas.lineWidth = 10;
         canvas.stroke();
 
         // 画一个五星
+
+        canvas.moveTo(0, 150);
+        canvas.lineTo(100, 150);
+        canvas.lineTo(100 - 100 * Math.cos(36 * Math.PI / 180),
+            150 + 100 * Math.sin(36 * Math.PI / 180));
+
+        canvas.stroke();
     }
     init();
+
+    function square(x, y, length, color, width){
+        // 在 （x, y） 处画边长为 length，颜色为 color，线宽为 width 的正方形
+
+    }
 </script>
 </body>
 </html>
