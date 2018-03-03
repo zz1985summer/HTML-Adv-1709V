@@ -21,6 +21,7 @@
 ### canvas
     - path
     - line style
+    - image
 
 ### chartjs
 
