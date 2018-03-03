@@ -14,7 +14,16 @@
 
 ### audio
 
+### canvas
+
 ## Day03
 
 ### canvas
+    - path
+    - line style
+
+### chartjs
+
+
+
 
