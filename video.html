@@ -30,7 +30,14 @@
     Audio can not play.
 </audio>
 <script>
+    window.onload = function () {
+        var element = document.getElementById('audio');
+        element.addEventListener('pause', pauseTest, false);
+    };
 
+    function pauseTest() {
+        console.log('audio paused.');
+    }
 </script>
 </body>
 </html>

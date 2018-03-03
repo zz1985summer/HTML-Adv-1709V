@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="canvas" width="300" height="200"></canvas>
+<script>
+    function init() {
+        var element = document.getElementById('canvas');
+        var canvas = element.getContext('2d');
+        canvas.fillStyle = '#f00';
+        canvas.fillRect(0, 0, 150, 100);
+    }
+    init();
+</script>
+</body>
+</html>
