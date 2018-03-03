@@ -18,7 +18,20 @@
         canvas.strokeRect(150, 100, 150, 100);
         canvas.clearRect(100, 50, 100, 100);
 
-        canvas.fillText('Hello, 画布!', 120, 105);
+        canvas.font = 'bold 50px consolas';
+//        canvas.fillText('Hello', 120, 105);
+
+        canvas.shadowColor = 'rgba(0, 0, 0, 0.5)';
+        canvas.shadowOffsetX = 5;
+        canvas.shadowOffsetY = 5;
+        canvas.shadowBlur = 5;
+
+        canvas.fillText('Hi', 120, 105);
+
+        var size = canvas.measureText('Hi');
+        console.log('size', size);
+
+        canvas.strokeRect(120, 65, size.width, 50);
 
         canvas.moveTo(150, 50); // 起始点
         canvas.lineTo(150, 150);
@@ -33,12 +46,23 @@
             150 + 100 * Math.sin(36 * Math.PI / 180));
 
         canvas.stroke();
+
+        square(canvas, 200, 0, 100, '#0f0', 10);
     }
     init();
 
-    function square(x, y, length, color, width){
+    function square(canvas, x, y, length, color, width) {
         // 在 （x, y） 处画边长为 length，颜色为 color，线宽为 width 的正方形
+        canvas.moveTo(x, y);
+        canvas.lineTo(x + length, y);
+        canvas.lineTo(x + length, y + length);
+        canvas.lineTo(x, y + length);
+        canvas.lineTo(x, y);
 
+        canvas.strokeStyle = color;
+        canvas.lineWidth = width;
+
+        canvas.stroke();
     }
 </script>
 </body>
