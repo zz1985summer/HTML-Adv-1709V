@@ -7,7 +7,7 @@
 <body>
 <form action="http://cn.bing.com/" method="get">
     <input type="hidden" name="key" value="123">
-    <input placeholder="Username">
+    <input placeholder="Username" required>
     <input type="password" placeholder="Password">
     <input type="checkbox">
     <input type="radio">
@@ -16,7 +16,11 @@
     <input type="email" placeholder="Email" autofocus>
     <br>
     <input type="color" name="color"><br>
-    <input type="">
+    <input type="number" placeholder="Number" min="100">
+    <br>
+    <input type="text" pattern="1\d{10}" placeholder="Mobile">提示：。。。
+    <br>
+    <input type="date" name="Date" id="">
     <input type="submit" value="Submit">
     <input type="button" value="Button">
     <input type="reset" value="Reset">
