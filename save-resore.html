@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="canvas" width="300" height="500"></canvas>
+<script>
+    function init() {
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        ctx.fillStyle = '#fcc';
+        ctx.shadowColor = 'rgba(255, 0, 0, 0.5)';
+        ctx.shadowOffsetX = 5;
+        ctx.shadowOffsetY = 5;
+        ctx.shadowBlur = 5;
+        ctx.fillRect(100, 100, 100, 30);
+        ctx.save(); // 保存样式信息
+
+        ctx.fillStyle = '#ccf';
+        ctx.shadowColor = 'rgba(0, 0, 255, 0.5)';
+        ctx.shadowOffsetX = 15;
+        ctx.shadowOffsetY = 15;
+        ctx.shadowBlur = 5;
+        ctx.fillRect(100, 200, 100, 30);
+        ctx.save();
+
+        ctx.restore(); // 恢复样式信息
+        ctx.restore(); // 恢复样式信息
+        ctx.beginPath();
+        ctx.arc(120, 300, 20, Math.PI * 2, false);
+        ctx.closePath();
+        ctx.fill();
+
+    }
+
+    init();
+</script>
+</body>
+</html>
