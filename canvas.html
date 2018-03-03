@@ -12,6 +12,11 @@
         var canvas = element.getContext('2d');
         canvas.fillStyle = '#f00';
         canvas.fillRect(0, 0, 150, 100);
+        canvas.strokeRect(150, 100, 150, 100);
+        canvas.clearRect(100, 50, 100, 100);
+
+        canvas.fillText('Hello, Canvas!', 120, 105);
+
     }
     init();
 </script>
