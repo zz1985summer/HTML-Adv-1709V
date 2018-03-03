@@ -10,12 +10,20 @@
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
 
-    var image = new Image();
-    image.src = 'https://cn.vuejs.org/images/logo.png';
+    var image1 = new Image();
+    var image2 = new Image();
+    image1.src = 'https://cn.vuejs.org/images/logo.png';
+    image2.src = 'assets/img/image.png';
 
-    image.onload = function () {
-        ctx.drawImage(image, 0, 0, 100, 100);
+    image1.onload = function () {
+        ctx.drawImage(image1, 0, 0, 100, 100);
     };
+
+    image2.onload = function () {
+        ctx.drawImage(image2, 100, 0, 100, 100);
+    };
+
+
 
 //    ctx.beginPath();
     //    ctx.arc(100, 200, 100, Math.PI * 2, true);

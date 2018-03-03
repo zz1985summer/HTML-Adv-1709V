@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="assets/js/Chart.min.js"></script>
+</head>
+<body>
+<pre>
+
+
+    var element = document.getElementById('canvas');
+    var ctx = element.getContext('2d');
+
+    var chart = new Chart(ctx, {
+        type: '', // type 是图表的类型 bar line radar pie scatter area ...
+        data: {}, // data 是图表的数据
+        options: {} // 可选项
+    });
+</pre>
+
+<canvas id="canvas"></canvas>
+<script>
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+
+    var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['一月', '二月', '三月'],
+                datasets: [
+                    {
+                        label: 'HTML',
+                        backgroundColor: '#f00',
+                        borderColor: '#f00',
+                        data: [
+                            Math.random() * 100 + 1,
+                            Math.random() * 100 + 1,
+                            Math.random() * 100 + 1
+                        ],
+                        fill: false
+                    },
+                    {
+                        label: 'CSS',
+                        backgroundColor: '#00f',
+                        borderColor: '#00f',
+                        data: [
+                            -Math.random() * 100 + 1,
+                            -Math.random() * 100 + 1,
+                            -Math.random() * 100 + 1
+                        ],
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: '测试图'
+                }
+            }
+        })
+    ;
+</script>
+</body>
+</html>
