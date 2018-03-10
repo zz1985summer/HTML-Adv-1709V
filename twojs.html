@@ -19,6 +19,7 @@
             two.make...
 
             two.update();
+    5. let group = two.makeGroup(cicle, rect, ...);
 </pre>
 <div id="box"></div>
 <script>
@@ -34,9 +35,14 @@
 //    circle.noStroke();
 
     var rect = two.makeRectangle(100, 300, 200, 100);
-    rect.noStroke();
+//    rect.noStroke();
     rect.fill = '#0f0';
     rect.opacity = 0.5;
+
+    var group = two.makeGroup(circle, rect);
+    group.scale = 0.5;
+    group.linewidth = 20;
+
     two.update();
 </script>
 </body>
