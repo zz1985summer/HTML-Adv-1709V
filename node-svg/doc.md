@@ -11,6 +11,9 @@
 ## node-svg/ cmd: npm init
    `package.json`
 
-## node-svg/ cmd: npm i -S qr-image
-
 ## cmd: npm i -g cnpm --registry=https://registry.npm.taobao.org
+
+## node-svg/ cmd: cnpm i -S qr-image
+
+## create node-svg/app.js
+
