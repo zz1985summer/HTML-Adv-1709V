@@ -23,7 +23,7 @@
 <div id="box"></div>
 <script>
     var element = document.getElementById('box');
-    var params = {width: 500, height: 300};
+    var params = {width: 500, height: 500};
     var two = new Two(params).appendTo(element);
 
     var circle = two.makeCircle(100,100,50);
@@ -33,6 +33,10 @@
     circle.linewidth = 10;
 //    circle.noStroke();
 
+    var rect = two.makeRectangle(100, 300, 200, 100);
+    rect.noStroke();
+    rect.fill = '#0f0';
+    rect.opacity = 0.5;
     two.update();
 </script>
 </body>
