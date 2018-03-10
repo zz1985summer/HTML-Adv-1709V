@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tow js</title>
+    <script src="two.js"></script>
+</head>
+<body>
+<pre>
+    two.js
+    1. download two.js
+    2. script:src=two.js
+    3. div id="box"
+    4. script:two.js
+            var element = document.getElementById('box');
+            var params = {width: 500, height: 300};
+            var two = new Two(params).appendTo(element);
+
+            two.make...
+
+            two.update();
+</pre>
+<div id="box"></div>
+<script>
+    var element = document.getElementById('box');
+    var params = {width: 500, height: 300};
+    var two = new Two(params).appendTo(element);
+
+    var circle = two.makeCircle(100,100,50);
+    circle.fill = '#00f';
+
+    circle.stroke = '#f00';
+    circle.linewidth = 10;
+//    circle.noStroke();
+
+    two.update();
+</script>
+</body>
+</html>
