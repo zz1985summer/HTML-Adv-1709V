@@ -11,5 +11,8 @@
     "svg"
   ],
   "author": "1709V",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "qr-image": "^3.2.0"
+  }
 }
