@@ -1,9 +1,13 @@
 const qrImage = require('qr-image');
+const express = require('express');
+const bodyParser = require('body-parser');
 const fs = require('fs');
 
-// Quick Response Code
-let svg = qrImage.image('Hello qr code', {
-    type: 'svg'
+let app = new express();
+
+app.get('/', (req, res)=>{
+    // ...
+    res.end('It works...');
 });
 
-svg.pipe(fs.createWriteStream('test.svg'));
+app.listen(3000);
