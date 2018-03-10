@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>cube</title>
+    <style>
+        h2 {
+            margin: 50px;
+        }
+        .cube {
+            margin: 20px;
+        }
+        .f {
+            float: left;
+        }
+        .clear {
+            clear: both;
+        }
+        .next {
+            page-break-before: always;
+        }
+    </style>
+    <script src="https://cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        var title = [
+            '第一步: 顶层十字',
+            '第二步: 顶层四角',
+            '第三步: 中层四角',
+            '第四步: 底层四角',
+            '第五步: 底层十字'
+        ];
+        var c1 = [
+            [1, 2, 1],
+            [2, 2, 2],
+            [1, 2, 1]
+        ];
+        var t1 = [
+            '<转向>  前减  上加  左减  上减'
+        ];
+        var c2 = [
+            [2, 1, 2],
+            [1, 2, 1],
+            [2, 1, 2]
+        ];
+        var t2 = [
+            '[前右上 到 底前左]    右减  底减  右加',
+            '[底前右 到 前右上]    同上',
+            '<转向一>  右减  底倒  右加  前加  底倒  前减',
+            '<转向二>  前加  底倒  前减  右减  底倒  右加'
+        ];
+        var c3 = [
+            [1, 1, 1],
+            [2, 2, 2],
+            [1, 1, 1]
+        ];
+        var t3 = [
+            '[前右 到 底后]    右减  底加  右加  底加  前加  底减  前减',
+            '[底右 到 前右]    底加  前加  底减  前减  底减  右减  底加  右加',
+            '[底前 到 前右]    底减  右减  底加  右加  底加  前加  底减  前减',
+            '<转向>    右减  底加  右加  底加  前加  底减  前减  底加  右减  底加  右加  底加  前加  底减  前减'
+        ];
+        var c41 = [
+            [2, 1, 2],
+            [1, 2, 1],
+            [2, 1, 2]
+        ];
+        var t41 = [
+            '[底前左 到 底前右]    右减  底减  右加  前加  底加  前减  右减  底加  右加  底倒',
+            '[底前左 到 底后右]    右减  底减  右加  前加  底倒  前减  右减  底加  右加  底加'
+        ];
+        var c42 = [
+            [
+                [0, 0, 0, 2, 0],
+                [0, 2, 1, 1, 0],
+                [0, 1, 2, 1, 0],
+                [0, 1, 1, 1, 2],
+                [0, 2, 0, 0, 0]
+            ],
+            [
+                [0, 0, 0, 0, 0],
+                [0, 2, 1, 1, 2],
+                [0, 1, 2, 1, 0],
+                [2, 1, 1, 1, 0],
+                [0, 0, 0, 2, 0]
+            ],
+            [
+                [0, 0, 0, 0, 0],
+                [2, 1, 1, 1, 2],
+                [0, 1, 2, 1, 0],
+                [0, 1, 1, 1, 0],
+                [0, 2, 0, 2, 0]
+            ],
+            [
+                [0, 2, 0, 0, 0],
+                [0, 1, 1, 2, 0],
+                [0, 1, 2, 1, 0],
+                [0, 1, 1, 2, 0],
+                [0, 2, 0, 0, 0]
+            ],
+            [
+                [0, 2, 0, 2, 0],
+                [0, 1, 1, 1, 0],
+                [0, 1, 2, 1, 0],
+                [0, 2, 1, 2, 0],
+                [0, 0, 0, 0, 0]
+            ],
+            [
+                [0, 2, 0, 0, 0],
+                [0, 1, 1, 2, 0],
+                [0, 1, 2, 1, 0],
+                [0, 2, 1, 1, 0],
+                [0, 0, 0, 0, 0]
+            ],
+            [
+                [0, 0, 0, 0, 0],
+                [2, 1, 1, 1, 2],
+                [0, 1, 2, 1, 0],
+                [2, 1, 1, 1, 2],
+                [0, 0, 0, 0, 0]
+            ]
+        ];
+        var t42 = [
+            '<转向>    右减  底减  右加  底减  右减  底倒  右加  底倒'
+        ];
+        var c51 = [
+            [1, 2, 1],
+            [2, 2, 2],
+            [1, 2, 1]
+        ];
+        var t51 = [
+            '[一块都不对]    左减  右加  前加  左加  右减  底倒  左减  右加  前加  左加  右减',
+            '[只有一块对]    把这一块放在底前，然后按 0 来做'
+        ];
+        var c52 = [
+            [
+                [0, 0, 2, 0, 0],
+                [0, 2, 1, 2, 0],
+                [2, 1, 2, 1, 2],
+                [0, 2, 1, 2, 0],
+                [0, 0, 2, 0, 0]
+            ],
+            [
+                [0, 0, 2, 0, 0],
+                [0, 2, 1, 2, 0],
+                [0, 2, 2, 2, 0],
+                [0, 2, 1, 2, 0],
+                [0, 0, 2, 0, 0]
+            ],
+            [
+                [0, 0, 0, 0, 0],
+                [0, 2, 2, 2, 0],
+                [2, 1, 2, 2, 0],
+                [0, 2, 1, 2, 0],
+                [0, 0, 2, 0, 0]
+            ]
+        ];
+        var t52 = [
+            '[情况一]    左减  右加  前倒  左加  右减  底倒  左减  右加  前加  左加  右减  底倒  左减  右加  前倒  左加  右减  底减',
+            '[情况二]    左减  右加  前加  左加  右减  底加  左减  右加  前加  左加  右减  底加  左减  右加  前倒 左加  右减  底加  左减  右加  前加  左加  右减  底加  左减  右加  前加  左加  右减  底倒',
+            '[情况三]    左减  右加  前加  左加  右减  底减  左减  右加  前减  左加  右减  底减  左减  右加  前倒  左加  右减    '
+        ];
+        function genTitle(level) {
+            return '<h2>' + title[level - 1] + '</h2>';
+        }
+        var strokeColor = ['#fff', '#ddd', '#666'];
+        function genCube(cube, r, display) {
+            var html = '<div class="cube ' + display + '">';
+            for (var row = 0; row < cube.length; row++) {
+                html += '<div>';
+                for (var col = 0; col < cube[row].length; col++) {
+                    html +=
+                        '<svg width="' + 100 / r + '" height="' + 100 / r + '">' +
+                        '<circle cx="' + 50 / r + '" cy="' + 50 / r + '" r="' + 40 / r + '" stroke="' + strokeColor[cube[row][col]] + '" stroke-width="' + 40 / r + '" fill="#fff"></circle>' +
+                        '</svg> ';
+                }
+                html += '</div>';
+            }
+            html += '<div>';
+            return html;
+        }
+        function genText(text) {
+            var html = '<div>';
+            for (var i = 0; i < text.length; i++) {
+                html += '<h3>';
+                html += text[i];
+                html += '</h3>';
+            }
+            html += '</div>';
+            return html;
+        }
+        function genClear() {
+            return '<div class="clear"></div>';
+        }
+        function pageNext() {
+            return '<div class="next"></div>'
+        }
+        $(function () {
+            var body = $('body');
+            body.append(genTitle(1));
+            body.append(genCube(c1, 1)).append(genText(t1)).append(pageNext());
+            body.append(genTitle(2));
+            body.append(genCube(c2, 1)).append(genText(t2)).append(pageNext());
+            body.append(genTitle(3));
+            body.append(genCube(c3, 1)).append(genText(t3)).append(pageNext());
+            body.append(genTitle(4));
+            body.append(genCube(c41, 1)).append(genText(t41)).append(pageNext());
+            for (var i = 0; i < c42.length; i++) {
+                body.append(genCube(c42[i], 3, 'f'));
+            }
+            body.append(genClear()).append(genText(t42)).append(pageNext());
+            body.append(genTitle(5));
+            body.append(genCube(c51, 1)).append(genText(t51)).append(pageNext());
+            for (var i = 0; i < c52.length; i++) {
+                body.append(genCube(c52[i], 2, 'f'));
+            }
+            body.append(genClear()).append(genText(t52)).append(pageNext());
+        });
+    </script>
+</head>
+<body>
+<h1>三阶魔方普通解法</h1>
+<a href="http://mingfei.net/mf.html">http://mingfei.net/mf.html</a>
+<hr>
+</body>
+</html>
